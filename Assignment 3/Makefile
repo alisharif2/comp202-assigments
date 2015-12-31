@@ -6,12 +6,11 @@ JC = javac
 .java.class:
 	$(JC) $(JFLAGS) $*.java
 
-# List all .java files to be compiled
-CLASSES =  CardGame.java UtilityCode.java Suit.java Value.java Card.java CardPile.java Sudoku.java
+CLASSES =  $(wildcard *.java)
 
-default: classes
+default: $(CLASSES)
 
-classes: $(CLASSES:.java=.class)
+$(CLASSES): $(CLASSES:.java=.class)
 
 clean:
 	del $(CLASSES:.java=.class)

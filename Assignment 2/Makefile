@@ -6,11 +6,13 @@ JC = javac
 .java.class:
 	$(JC) $(JFLAGS) $*.java
 
-# List all .java files to be compiled
-CLASSES = SentenceChecker.java Cryptography.java 
-default: classes
+CLASSES =  $(wildcard *.java)
 
-classes: $(CLASSES:.java=.class)
+default: $(CLASSES)
+
+$(CLASSES): $(CLASSES:.java=.class)
 
 clean:
-	del *.class
+	del $(CLASSES:.java=.class)
+
+rebuild: clean default

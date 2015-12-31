@@ -6,11 +6,13 @@ JC = javac
 .java.class:
 	$(JC) $(JFLAGS) $*.java
 
-CLASSES = MakingChange.java LeapYearCalculator.java DnaUtilities.java
+CLASSES =  $(wildcard *.java)
 
-default: classes
+default: $(CLASSES)
 
-classes: $(CLASSES:.java=.class)
+$(CLASSES): $(CLASSES:.java=.class)
 
 clean:
-	del *.class
+	del $(CLASSES:.java=.class)
+
+rebuild: clean default
